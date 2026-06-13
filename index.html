@@ -334,6 +334,7 @@
     }
     @media (max-width: 620px) {
       .hero-btns { justify-content: center; }
+      .nav-dl { display: none; }
       .fpill { right: -20px !important; left: auto !important; }
       .feat-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
@@ -370,7 +371,7 @@
       <div class="hero-phone-wrap">
         <div class="hero-phone">
           <div class="ph-island"></div>
-          <img src="uploads/Screenshot (1 Jun 2026 10_06_00).png" alt="TRCKR tracker screen" />
+          <img class="lang-shot" data-en="uploads/TRCKR_mainUI_en_usd.jpg" data-nl="uploads/TRCKR_mainUI_en_eur.jpg" src="uploads/TRCKR_mainUI_en_usd.jpg" alt="TRCKR tracker screen" />
         </div>
         <div class="fpill fpill-1">
           <span class="fdot"></span>
@@ -412,15 +413,15 @@
   <div class="phones">
     <div class="ph">
       <div class="ph-island"></div>
-      <img src="uploads/Screenshot (1 Jun 2026 10_05_43).png" alt="Stored projects" />
+      <img class="lang-shot" data-en="uploads/TRCKR_storedprojects_exp_en_usd.jpg" data-nl="uploads/TRCKR_storedprojects_exp_en_eur.jpg" src="uploads/TRCKR_storedprojects_exp_en_usd.jpg" alt="Stored projects with export" />
     </div>
     <div class="ph main">
       <div class="ph-island"></div>
-      <img src="uploads/Screenshot (1 Jun 2026 10_06_00).png" alt="Tracker screen" />
+      <img class="lang-shot" data-en="uploads/TRCKR_mainUI_en_usd.jpg" data-nl="uploads/TRCKR_mainUI_en_eur.jpg" src="uploads/TRCKR_mainUI_en_usd.jpg" alt="Tracker screen" />
     </div>
     <div class="ph">
       <div class="ph-island"></div>
-      <img src="uploads/Screenshot (1 Jun 2026 10_07_18).png" alt="Home screen widget" />
+      <img class="lang-shot" data-en="uploads/TRCKR_settings_en_usd.jpg" data-nl="uploads/TRCKR_settings_en_eur.jpg" src="uploads/TRCKR_settings_en_usd.jpg" alt="Settings" />
     </div>
   </div>
 </section>
@@ -736,6 +737,10 @@ function setLang(lang) {
   });
   document.querySelectorAll('.lang-sw button').forEach(function(b) {
     b.classList.toggle('on', b.dataset.lang === lang);
+  });
+  document.querySelectorAll('.lang-shot').forEach(function(im) {
+    var s = lang === 'nl' ? im.dataset.nl : im.dataset.en;
+    if (s) im.src = s;
   });
   document.documentElement.lang = lang;
   localStorage.setItem('hrt-lang', lang);
