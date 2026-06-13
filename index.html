@@ -276,6 +276,33 @@
     .acard h3 { font-size: 0.88rem; font-weight: 600; }
     .acard p { font-size: 0.79rem; color: var(--ink2); line-height: 1.5; }
 
+    /* ── CROSSLINK ───────────────────────── */
+    .crosslink-wrap { max-width: 1100px; margin: 0 auto; }
+    .crosslink {
+      background: var(--ink); color: white;
+      border-radius: var(--rlg); padding: 2.25rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .crosslink-lbl {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.09em;
+      text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.4rem;
+    }
+    .crosslink h3 {
+      font-size: clamp(1.1rem,2vw,1.5rem); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.5rem;
+    }
+    .crosslink p { font-size: 0.85rem; color: rgba(255,255,255,0.55); max-width: 480px; line-height: 1.6; }
+    .crosslink-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: white; color: var(--ink); text-decoration: none;
+      padding: 0.72rem 1.4rem; border-radius: 9px;
+      font-size: 0.85rem; font-weight: 700; white-space: nowrap;
+      transition: opacity 0.12s; flex-shrink: 0;
+    }
+    .crosslink-btn:hover { opacity: 0.85; }
+    .crosslink-btn svg { width: 16px; height: 16px; fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
     /* ── FOOTER ──────────────────────────── */
     footer {
       background: #0d1214;
@@ -303,6 +330,7 @@
       .hero-sub { max-width: 100%; }
       .feat-grid { grid-template-columns: 1fr 1fr; }
       .aud-grid { grid-template-columns: 1fr 1fr; }
+      .crosslink { flex-direction: column; gap: 1.25rem; }
     }
     @media (max-width: 620px) {
       .hero-btns { justify-content: center; }
@@ -342,7 +370,7 @@
       <div class="hero-phone-wrap">
         <div class="hero-phone">
           <div class="ph-island"></div>
-          <img src="uploads/main_ui_en.png" alt="TRCKR tracker screen" />
+          <img src="uploads/Screenshot (1 Jun 2026 10_06_00).png" alt="TRCKR tracker screen" />
         </div>
         <div class="fpill fpill-1">
           <span class="fdot"></span>
@@ -384,15 +412,15 @@
   <div class="phones">
     <div class="ph">
       <div class="ph-island"></div>
-      <img src="uploads/stored_projects_en.png" alt="Stored projects" />
+      <img src="uploads/Screenshot (1 Jun 2026 10_05_43).png" alt="Stored projects" />
     </div>
     <div class="ph main">
       <div class="ph-island"></div>
-      <img src="uploads/main_ui_en.png" alt="Tracker screen" />
+      <img src="uploads/Screenshot (1 Jun 2026 10_06_00).png" alt="Tracker screen" />
     </div>
     <div class="ph">
       <div class="ph-island"></div>
-      <img src="uploads/widget_en.png" alt="Home screen widget" />
+      <img src="uploads/Screenshot (1 Jun 2026 10_07_18).png" alt="Home screen widget" />
     </div>
   </div>
 </section>
@@ -527,6 +555,25 @@
   </div>
 </section>
 
+</section>
+
+<!-- CROSS-LINK TO TCKR -->
+<section class="sec">
+  <div class="crosslink-wrap">
+    <div class="crosslink">
+      <div class="crosslink-text">
+        <p class="crosslink-lbl" data-key="xlLabel">TRCKR overkill?</p>
+        <h3 data-key="xlTitle">Just a fixed hourly rate for the job? Choose TCKR.</h3>
+        <p data-key="xlDesc">No projects, no lists — one big number ticking up while you work. The beautifully simple companion app.</p>
+      </div>
+      <a class="crosslink-btn" href="https://hourlyrateticker.com" target="_blank" rel="noopener">
+        <span data-key="xlBtn">Discover TCKR</span>
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="ft-in">
@@ -540,6 +587,7 @@
     <div class="ft-links">
       <a href="https://hourlyratetracker.com/privacy" data-key="ftPrivacy">Privacy Policy</a>
       <a href="https://hourlyratetracker.com" data-key="ftSupport">Support</a>
+      <a href="https://hourlyrateticker.com" data-key="ftTckr">TCKR</a>
     </div>
     <p class="ft-cr" data-key="ftCr">© 2026 RedLimesDev · hourlyratetracker.com</p>
   </div>
@@ -605,7 +653,12 @@ const COPY = {
     ftTagline:   "No account. No internet. No nonsense.",
     ftPrivacy:   "Privacy Policy",
     ftSupport:   "Support",
-    ftCr:                "\u00a9 2026 RedLimesDev / Pbliz! \u00b7 TRCKR \u00b7 hourlyratetracker.com"
+    ftTckr:      "TCKR",
+    xlLabel:     "TRCKR overkill?",
+    xlTitle:     "Just a fixed hourly rate for the job? Choose TCKR.",
+    xlDesc:      "No projects, no lists \u2014 one big number ticking up while you work. The beautifully simple companion app.",
+    xlBtn:       "Discover TCKR",
+    ftCr:        "\u00a9 2026 RedLimesDev \u00b7 hourlyratetracker.com"
   },
   nl: {
     navCta:      "Gratis downloaden",
@@ -665,7 +718,12 @@ const COPY = {
     ftTagline:   "Geen account. Geen internet. Geen onzin.",
     ftPrivacy:   "Privacybeleid",
     ftSupport:   "Ondersteuning",
-    ftCr:             "\u00a9 2026 RedLimesDev / Pbliz! \u00b7 TRCKR \u00b7 hourlyratetracker.com"
+    ftTckr:      "TCKR",
+    xlLabel:     "TRCKR te veel?",
+    xlTitle:     "Gewoon een vast uurtarief voor de klus? Kies TCKR.",
+    xlDesc:      "Geen projecten, geen lijsten \u2014 \u00e9\u00e9n groot getal dat oploopt terwijl je werkt. De prachtig eenvoudige companion-app.",
+    xlBtn:       "Ontdek TCKR",
+    ftCr:        "\u00a9 2026 RedLimesDev \u00b7 hourlyratetracker.com"
   }
 };
 
