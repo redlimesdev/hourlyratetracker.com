@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRCKR · Track time. Earn more.</title>
+  <meta name="description" content="Track time and earnings per project and task — instant, at your fingertips. Free to download." />
+  <link rel="canonical" href="https://hourlyratetracker.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand:    #4d6070;
+      --brand-dk: #3b4e5d;
+      --brand-lt: #ecf0f3;
+      --ink:      #0d1214;
+      --ink2:     #48565f;
+      --ink3:     #8898a2;
+      --bg:       #ffffff;
+      --bg2:      #f4f7f9;
+      --brd:      #dbe1e6;
+      --r:        14px;
+      --rlg:      22px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg); color: var(--ink);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      height: 64px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--brd);
+      padding: 0 clamp(1.5rem,5vw,5rem);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+    .nav-brand img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav-brand-name { font-size: 0.95rem; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; white-space: nowrap; }
+    .nav-right { display: flex; align-items: center; gap: 0.875rem; }
+    .lang-sw {
+      display: flex; border: 1.5px solid var(--brd);
+      border-radius: 7px; overflow: hidden; background: var(--bg2);
+    }
+    .lang-sw button {
+      padding: 0.28rem 0.7rem;
+      font: 600 0.73rem/1 'DM Sans', sans-serif;
+      border: none; background: transparent; cursor: pointer;
+      color: var(--ink3); transition: all 0.12s;
+    }
+    .lang-sw button.on { background: var(--brand); color: white; }
+    .nav-dl {
+      display: inline-flex; align-items: center;
+      background: var(--brand); color: white; text-decoration: none;
+      padding: 0.5rem 1.15rem; border-radius: 7px;
+      font-size: 0.83rem; font-weight: 600; transition: opacity 0.12s;
+    }
+    .nav-dl:hover { opacity: 0.82; }
+
+    /* ── HERO ────────────────────────────── */
+    .hero-trust { font-size: 0.77rem; color: var(--ink3); margin-top: 0.875rem; letter-spacing: 0.01em; text-align: center; width: 100%; }
+    .hero {
+      padding: clamp(4rem,7vw,7rem) clamp(1.5rem,5vw,5rem) clamp(3rem,5vw,5rem);
+    }
+    .hero-in {
+      max-width: 860px; margin: 0 auto;
+      display: flex; flex-direction: column;
+      align-items: flex-start; text-align: left;
+    }
+    .hero-lbl {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--brand); margin-bottom: 1rem;
+      white-space: nowrap;
+    }
+    .hero-lbl::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: #22c55e; display: inline-block; flex-shrink: 0;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem,3.8vw,3.4rem);
+      font-weight: 700; letter-spacing: -0.025em; line-height: 1.15;
+      margin-bottom: 2rem; width: 100%;
+    }
+    .hero h1 em { font-style: normal; color: var(--brand); }
+    .hero-sub {
+      font-size: clamp(0.97rem,1.4vw,1.14rem);
+      color: var(--ink2); max-width: 540px;
+      margin: 0 0 1.75rem; line-height: 1.65;
+    }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; width: 100%; }
+    .hero-phone-wrap { position: relative; display: block; margin: 1.75rem auto; width: fit-content; }
+    .hero-phone {
+      width: 240px; height: 518px;
+      border: 2.5px solid #1c1c1c; border-radius: 36px;
+      overflow: hidden; background: #111;
+      box-shadow: 0 28px 70px rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.1);
+      display: block;
+    }
+    .hero-phone .ph-island {
+      position: absolute; top: 9px; left: 50%; transform: translateX(-50%);
+      width: 46px; height: 13px;
+      background: #1c1c1c; border-radius: 8px; z-index: 3; pointer-events: none;
+    }
+    .hero-phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .fpill-1 { top: 60px; right: -148px; }
+    .fpill-2 { bottom: 80px; left: -138px; }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      background: var(--ink); color: white; text-decoration: none;
+      padding: 0.68rem 1.25rem; border-radius: 11px;
+      transition: transform 0.15s, opacity 0.12s;
+    }
+    .store-btn:hover { transform: translateY(-1px); opacity: 0.88; }
+    .store-btn svg { width: 20px; height: 20px; fill: white; flex-shrink: 0; }
+    .store-btn-copy { display: flex; flex-direction: column; }
+    .store-btn-sup { font-size: 0.62rem; opacity: 0.68; line-height: 1; letter-spacing: 0.03em; }
+    .store-btn-name { font-size: 0.87rem; font-weight: 600; line-height: 1.3; white-space: nowrap; }
+
+
+    .fpill {
+      position: absolute; background: white;
+      border: 1px solid var(--brd); border-radius: 100px;
+      padding: 0.44rem 0.85rem;
+      font-size: 0.77rem; font-weight: 600;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      display: flex; align-items: center; gap: 0.4rem; white-space: nowrap;
+    }
+    .fdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .fpill-1 .fdot { background: #22c55e; }
+    .fpill-2 .fdot { background: var(--brand); }
+
+    /* ── SECTIONS ────────────────────────── */
+    .sec { padding: clamp(4rem,7vw,6.5rem) clamp(1.5rem,5vw,5rem); }
+    .sec-bg { background: var(--bg2); }
+    .sec-hd { max-width: 1100px; margin: 0 auto 2.75rem; }
+    .sec-lbl {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.09em;
+      text-transform: uppercase; color: var(--brand); margin-bottom: 0.4rem;
+    }
+    .sec-hd h2 {
+      font-size: clamp(1.7rem,3.5vw,2.65rem);
+      font-weight: 700; letter-spacing: -0.02em; line-height: 1.15;
+    }
+
+    /* ── FEATURES ────────────────────────── */
+    .feat-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem;
+    }
+    .fc {
+      background: white; border: 1px solid var(--brd);
+      border-radius: var(--rlg); padding: 1.5rem 1.5rem 1.6rem;
+    }
+    .fi {
+      width: 40px; height: 40px; border-radius: 9px;
+      background: var(--brand-lt);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.875rem;
+    }
+    .fi svg {
+      width: 18px; height: 18px; stroke: var(--brand);
+      fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .fc h3 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .fc p { font-size: 0.83rem; color: var(--ink2); line-height: 1.6; }
+
+    /* ── SCREENSHOTS ─────────────────────── */
+    .phones {
+      display: flex; justify-content: center; align-items: flex-end;
+      gap: 1.5rem; margin-top: 3rem; /* images stay centered */
+    }
+    .ph {
+      width: 172px; height: 370px;
+      border: 2.5px solid #1c1c1c; border-radius: 30px;
+      background: #111; position: relative; overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12); flex-shrink: 0;
+    }
+    .ph.main {
+      width: 194px; height: 418px;
+      transform: translateY(-22px);
+      box-shadow: 0 22px 58px rgba(0,0,0,0.18); z-index: 1;
+    }
+    .ph-island {
+      position: absolute; top: 9px; left: 50%; transform: translateX(-50%);
+      width: 46px; height: 13px;
+      background: #1c1c1c; border-radius: 8px; z-index: 3;
+      pointer-events: none;
+    }
+    .ph img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top; display: block;
+    }
+    .ph-caption {
+      text-align: center; margin-top: 1.25rem;
+      font-size: 0.78rem; color: var(--ink3); font-weight: 500;
+    }
+
+    /* ── PRICING ─────────────────────────── */
+    .pricing-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .pc {
+      background: white; border: 1.5px solid var(--brd);
+      border-radius: var(--rlg); padding: 1.875rem 1.875rem 2rem;
+    }
+    .pc.pro {
+      border-color: var(--brand);
+      background: linear-gradient(150deg, #fff 65%, var(--brand-lt));
+    }
+    .pc-tier {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.09em;
+      text-transform: uppercase; color: var(--ink3); margin-bottom: 0.4rem;
+    }
+    .pc.pro .pc-tier { color: var(--brand); }
+    .pc-price {
+      font-size: 2.1rem; font-weight: 700; letter-spacing: -0.03em;
+      line-height: 1; margin-bottom: 0.25rem;
+    }
+    .pc-note { font-size: 0.77rem; color: var(--ink3); margin-bottom: 1.6rem; }
+    .pc-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .pc-list li {
+      font-size: 0.86rem; color: var(--ink2);
+      display: flex; align-items: flex-start; gap: 0.5rem;
+    }
+    .pc.pro .pc-list li { color: var(--ink); }
+    .chk {
+      flex-shrink: 0; margin-top: 2px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--brand-lt);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .chk svg {
+      width: 10px; height: 10px; stroke: var(--brand);
+      fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .pc-cta {
+      display: block; width: 100%; margin-top: 1.5rem;
+      background: var(--brand); color: white; text-decoration: none;
+      padding: 0.75rem; border-radius: 10px;
+      font-size: 0.85rem; font-weight: 600; text-align: center;
+      transition: opacity 0.12s;
+    }
+    .pc-cta:hover { opacity: 0.85; }
+
+    /* ── AUDIENCE ────────────────────────── */
+    .aud-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem;
+    }
+    .acard {
+      background: var(--bg2); border: 1px solid var(--brd);
+      border-radius: var(--rlg); padding: 1.6rem 1.25rem;
+      text-align: left;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 0.65rem;
+    }
+    .aico {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--brand-lt);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .aico svg {
+      width: 22px; height: 22px; stroke: var(--brand);
+      fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .acard h3 { font-size: 0.88rem; font-weight: 600; }
+    .acard p { font-size: 0.79rem; color: var(--ink2); line-height: 1.5; }
+
+    /* ── FOOTER ──────────────────────────── */
+    footer {
+      background: #0d1214;
+      padding: 2.75rem clamp(1.5rem,5vw,5rem);
+    }
+    .ft-in {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .ft-brand { display: flex; align-items: center; gap: 0.6rem; }
+    .ft-brand img { width: 28px; height: 28px; border-radius: 6px; opacity: 0.85; }
+    .ft-bname { font-size: 0.85rem; font-weight: 600; color: white; }
+    .ft-tag { font-size: 0.75rem; color: rgba(255,255,255,0.38); margin-top: 0.15rem; }
+    .ft-links { display: flex; gap: 1.25rem; }
+    .ft-links a {
+      font-size: 0.76rem; color: rgba(255,255,255,0.38);
+      text-decoration: none; transition: color 0.12s;
+    }
+    .ft-links a:hover { color: white; }
+    .ft-cr { font-size: 0.7rem; color: rgba(255,255,255,0.26); }
+
+    /* ── RESPONSIVE ──────────────────────── */
+    @media (max-width: 880px) {
+      .hero-sub { max-width: 100%; }
+      .feat-grid { grid-template-columns: 1fr 1fr; }
+      .aud-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .hero-btns { justify-content: center; }
+      .fpill { right: -20px !important; left: auto !important; }
+      .feat-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .phones { gap: 0.5rem; }
+      .ph { width: 108px; height: 232px; border-radius: 20px; }
+      .ph.main { width: 124px; height: 267px; border-radius: 22px; }
+      .ph-island { width: 34px; height: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <img src="uploads/trckr_icon_euro_512.png" alt="TRCKR icon" />
+    <span class="nav-brand-name">TRCKR</span>
+  </a>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button class="on" data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="nl" onclick="setLang('nl')">NL</button>
+    </div>
+    <a class="nav-dl" href="#download" data-key="navCta">Download free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-in">
+      <p class="hero-lbl" data-key="heroLabel">Free to download · Pro from $4.99</p>
+      <h1 data-key="heroH1">Your time is money.<br><em>Track it like it is.</em></h1>
+      <p class="hero-sub" data-key="heroSub">The professional billing companion for freelancers and consultants. Open the app, select your project, pick your task, hit start.</p>
+      <div class="hero-phone-wrap">
+        <div class="hero-phone">
+          <div class="ph-island"></div>
+          <img src="uploads/Screenshot (1 Jun 2026 10_06_00).png" alt="TRCKR tracker screen" />
+        </div>
+        <div class="fpill fpill-1">
+          <span class="fdot"></span>
+          <span data-key="pill1">Live earnings</span>
+        </div>
+        <div class="fpill fpill-2">
+          <span class="fdot"></span>
+          <span data-key="pill2">No account needed</span>
+        </div>
+      </div>
+      <div class="hero-btns" id="download">
+        <!-- App Store button — uncomment when iOS link is ready
+        <a class="store-btn" href="#">
+          <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span class="store-btn-copy">
+            <span class="store-btn-sup">Download on the</span>
+            <span class="store-btn-name">App Store</span>
+          </span>
+        </a>
+        -->
+        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.hourlyratetracker.app" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M3.18 23.76c.35.2.76.21 1.12.02l12.44-7.18-2.7-2.7-10.86 9.86zm-1.18-20.4v17.28c0 .58.32 1.08.8 1.36l9.72-9.72-9.72-9.72a1.56 1.56 0 00-.8 1.36zM20.3 9.34l-2.5-1.44-3.02 3.02 3.02 3.02 2.52-1.46c.72-.42.72-1.72-.02-2.14zM4.3.22L16.74 7.4l-2.7 2.7L3.18.24C3.54.05 3.96.06 4.3.22z"/></svg>
+          <span class="store-btn-copy">
+            <span class="store-btn-sup">Get it on</span>
+            <span class="store-btn-name">Google Play</span>
+          </span>
+        </a>
+      </div>
+      <p class="hero-trust" data-key="heroTrust">No data shared · No data collected · No ads</p>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="sec sec-bg">
+  <div class="sec-hd">
+    <p class="sec-lbl" data-key="shotsLabel">Screenshots</p>
+    <h2 data-key="shotsH2">See it in action</h2>
+  </div>
+  <div class="phones">
+    <div class="ph">
+      <div class="ph-island"></div>
+      <img src="uploads/Screenshot (1 Jun 2026 10_05_43).png" alt="Stored projects" />
+    </div>
+    <div class="ph main">
+      <div class="ph-island"></div>
+      <img src="uploads/Screenshot (1 Jun 2026 10_06_00).png" alt="Tracker screen" />
+    </div>
+    <div class="ph">
+      <div class="ph-island"></div>
+      <img src="uploads/Screenshot (1 Jun 2026 10_07_18).png" alt="Home screen widget" />
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="sec sec-bg">
+  <div class="sec-hd">
+    <p class="sec-lbl" data-key="featLabel">Features</p>
+    <h2 data-key="featH2">Everything you need.<br>Nothing you don't.</h2>
+  </div>
+  <div class="feat-grid">
+
+    <div class="fc">
+      <div class="fi"><svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div>
+      <h3 data-key="feat1Title">Projects &amp; Tasks</h3>
+      <p data-key="feat1Desc">Create projects and add tasks within each. Switch between tasks instantly — each carries its own hourly rate.</p>
+    </div>
+
+    <div class="fc">
+      <div class="fi"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <h3 data-key="feat2Title">Your Rate, Your Currency</h3>
+      <p data-key="feat2Desc">Set a default rate and currency. Override the rate per task for complex billing structures — total flexibility.</p>
+    </div>
+
+    <div class="fc">
+      <div class="fi"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+      <h3 data-key="feat3Title">Live Earnings Display</h3>
+      <p data-key="feat3Desc">Task time, project time and balance update in real time as you work. Always know exactly what you've earned.</p>
+    </div>
+
+    <div class="fc">
+      <div class="fi"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+      <h3 data-key="feat4Title">Full Billing History</h3>
+      <p data-key="feat4Desc">All completed projects saved with every task, time spent, rate and earnings. Resume any project with one tap.</p>
+    </div>
+
+    <div class="fc">
+      <div class="fi"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+      <h3 data-key="feat5Title">Edit After the Fact</h3>
+      <p data-key="feat5Desc">Adjust time spent and hourly rate on any task in Stored Projects. Full control over your billing.</p>
+    </div>
+
+    <div class="fc">
+      <div class="fi"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      <h3 data-key="feat6Title">Export to PDF &amp; CSV</h3>
+      <p data-key="feat6Desc">One tap to generate a clean, ready-to-send summary of all your projects and tasks. PDF or CSV — your choice.</p>
+    </div>
+
+    <div class="fc">
+      <div class="fi"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h3 data-key="feat7Title">Home Screen Widget</h3>
+      <p data-key="feat7Desc">Active project, task, rate and balance — at a glance, without opening the app. Refreshes every 30 seconds.</p>
+    </div>
+
+    <div class="fc">
+      <div class="fi"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h3 data-key="feat8Title">No Account Required</h3>
+      <p data-key="feat8Desc">Everything stays on your device. No internet, no sign-up, no subscriptions. Ever.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec sec-bg">
+  <div class="sec-hd">
+    <p class="sec-lbl" data-key="pricingLabel">Pricing</p>
+    <h2 data-key="pricingH2">Free to start. One-time to unlock.</h2>
+  </div>
+  <div class="pricing-grid">
+
+    <div class="pc">
+      <p class="pc-tier" data-key="freeTier">Free</p>
+      <p class="pc-price" data-key="freePrice">Free</p>
+      <p class="pc-note" data-key="freeNote">Full time and earnings tracking, forever</p>
+      <ul class="pc-list">
+        <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="2,5.5 4.5,8 8,2.5"/></svg></span><span data-key="freeF1">Full time &amp; earnings tracking</span></li>
+        <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="2,5.5 4.5,8 8,2.5"/></svg></span><span data-key="freeF2">1 project, up to 3 tasks</span></li>
+        <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="2,5.5 4.5,8 8,2.5"/></svg></span><span data-key="freeF3">All rate &amp; currency options</span></li>
+        <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="2,5.5 4.5,8 8,2.5"/></svg></span><span data-key="freeF4">Dark / light / system theme</span></li>
+      </ul>
+    </div>
+
+    <div class="pc pro">
+      <p class="pc-tier" data-key="proTier">Pro</p>
+      <p class="pc-price" data-key="proPrice">$4.99 / €4.99</p>
+      <p class="pc-note" data-key="proNote">One-time purchase · No subscription</p>
+      <ul class="pc-list">
+        <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="2,5.5 4.5,8 8,2.5"/></svg></span><span data-key="proF1">Unlimited projects &amp; tasks</span></li>
+        <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="2,5.5 4.5,8 8,2.5"/></svg></span><span data-key="proF2">Home screen widget</span></li>
+        <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="2,5.5 4.5,8 8,2.5"/></svg></span><span data-key="proF3">PDF &amp; CSV export</span></li>
+        <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="2,5.5 4.5,8 8,2.5"/></svg></span><span data-key="proF4">Full billing history</span></li>
+      </ul>
+      <a class="pc-cta" href="#download" data-key="proCta">Pay once, use forever</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="sec">
+  <div class="sec-hd">
+    <p class="sec-lbl" data-key="audLabel">Perfect for</p>
+    <h2 data-key="audH2">Built for everyone who bills by the hour</h2>
+  </div>
+  <div class="aud-grid">
+
+    <div class="acard">
+      <div class="aico"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <h3 data-key="aud1Title">Freelancers</h3>
+      <p data-key="aud1Desc">Independent professionals across any field</p>
+    </div>
+
+    <div class="acard">
+      <div class="aico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <h3 data-key="aud2Title">Consultants</h3>
+      <p data-key="aud2Desc">Advisors and specialists with multiple clients</p>
+    </div>
+
+    <div class="acard">
+      <div class="aico"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <h3 data-key="aud3Title">Creatives</h3>
+      <p data-key="aud3Desc">Designers, developers and photographers</p>
+    </div>
+
+    <div class="acard">
+      <div class="aico"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+      <h3 data-key="aud4Title">Professionals</h3>
+      <p data-key="aud4Desc">Coaches, therapists, lawyers and more</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-in">
+    <div>
+      <div class="ft-brand">
+        <img src="uploads/trckr_icon_euro_512.png" alt="icon" />
+        <span class="ft-bname">TRCKR</span>
+      </div>
+      <p class="ft-tag" data-key="ftTagline">No account. No internet. No nonsense.</p>
+    </div>
+    <div class="ft-links">
+      <a href="https://hourlyratetracker.com/privacy" data-key="ftPrivacy">Privacy Policy</a>
+      <a href="https://hourlyratetracker.com" data-key="ftSupport">Support</a>
+    </div>
+    <p class="ft-cr" data-key="ftCr">© 2026 RedLimesDev · hourlyratetracker.com</p>
+  </div>
+</footer>
+
+<script>
+const COPY = {
+  en: {
+    navCta:      "Download free",
+    heroLabel:   "Free to download \u00b7 Pro from $4.99",
+    heroH1:      "Your time is money.<br><em>Track it like it is.</em>",
+    heroTrust:   "No data shared · No data collected · No ads",
+    heroSub:     "The professional billing companion for freelancers and consultants. Open the app, select your project, pick your task, hit start.",
+    pill1:       "Live earnings",
+    pill2:       "No account needed",
+    featLabel:   "Features",
+    featH2:      "Everything you need.<br>Nothing you don\u2019t.",
+    feat1Title:  "Projects &amp; Tasks",
+    feat1Desc:   "Create projects and add tasks within each. Switch between tasks instantly \u2014 each carries its own hourly rate.",
+    feat2Title:  "Your Rate, Your Currency",
+    feat2Desc:   "Set a default rate and currency. Override the rate per task for complex billing structures \u2014 total flexibility.",
+    feat3Title:  "Live Earnings Display",
+    feat3Desc:   "Task time, project time and balance update in real time as you work. Always know exactly what you\u2019ve earned.",
+    feat4Title:  "Full Billing History",
+    feat4Desc:   "All completed projects saved with every task, time spent, rate and earnings. Resume any project with one tap.",
+    feat5Title:  "Edit After the Fact",
+    feat5Desc:   "Adjust time spent and hourly rate on any task in Stored Projects. Full control over your billing.",
+    feat6Title:  "Export to PDF &amp; CSV",
+    feat6Desc:   "One tap to generate a clean, ready-to-send summary of all your projects and tasks. PDF or CSV \u2014 your choice.",
+    feat7Title:  "Home Screen Widget",
+    feat7Desc:   "Active project, task, rate and balance \u2014 at a glance, without opening the app. Refreshes every 30 seconds.",
+    feat8Title:  "No Account Required",
+    feat8Desc:   "Everything stays on your device. No internet, no sign-up, no subscriptions. Ever.",
+    shotsLabel:  "Screenshots",
+    shotsH2:     "See it in action",
+    pricingLabel:"Pricing",
+    pricingH2:   "Free to start. One-time to unlock.",
+    freeTier:    "Free",
+    freePrice:   "Free",
+    freeNote:    "Full time and earnings tracking, forever",
+    freeF1:      "Full time &amp; earnings tracking",
+    freeF2:      "1 project, up to 3 tasks",
+    freeF3:      "All rate &amp; currency options",
+    freeF4:      "Dark / light / system theme",
+    proTier:     "Pro",
+    proPrice:    "$4.99 / \u20ac4.99",
+    proNote:     "One-time purchase \u00b7 No subscription",
+    proF1:       "Unlimited projects &amp; tasks",
+    proF2:       "Home screen widget",
+    proF3:       "PDF &amp; CSV export",
+    proF4:       "Full billing history",
+    proCta:      "Pay once, use forever",
+    audLabel:    "Perfect for",
+    audH2:       "Built for everyone who bills by the hour",
+    aud1Title:   "Freelancers",
+    aud1Desc:    "Independent professionals across any field",
+    aud2Title:   "Consultants",
+    aud2Desc:    "Advisors and specialists with multiple clients",
+    aud3Title:   "Creatives",
+    aud3Desc:    "Designers, developers and photographers",
+    aud4Title:   "Professionals",
+    aud4Desc:    "Coaches, therapists, lawyers and more",
+    ftTagline:   "No account. No internet. No nonsense.",
+    ftPrivacy:   "Privacy Policy",
+    ftSupport:   "Support",
+    ftCr:                "\u00a9 2026 RedLimesDev / Pbliz! \u00b7 TRCKR \u00b7 hourlyratetracker.com"
+  },
+  nl: {
+    navCta:      "Gratis downloaden",
+    heroLabel:   "Gratis te downloaden \u00b7 Pro vanaf \u20ac4,99",
+    heroH1:      "Jouw tijd is geld.<br><em>Registreer het als zodanig.</em>",
+    heroTrust:   "Geen gegevens gedeeld · Geen gegevens verzameld · Geen advertenties",
+    heroSub:     "De professionele factuurassistent voor freelancers en consultants. Open de app, selecteer je project, kies je taak, druk start.",
+    pill1:       "Live verdiensten",
+    pill2:       "Geen account nodig",
+    featLabel:   "Functies",
+    featH2:      "Alles wat je nodig hebt.<br>Niets wat je niet nodig hebt.",
+    feat1Title:  "Projecten &amp; Taken",
+    feat1Desc:   "Maak projecten aan en voeg taken toe. Schakel direct tussen taken \u2014 elke taak heeft zijn eigen uurtarief.",
+    feat2Title:  "Jouw Tarief, Jouw Valuta",
+    feat2Desc:   "Stel een standaardtarief en valuta in. Overschrijf het tarief per taak voor complexe facturatiestructuren.",
+    feat3Title:  "Live Verdiensten",
+    feat3Desc:   "Taaktijd, projecttijd en saldo worden real-time bijgewerkt. Altijd precies weten wat je hebt verdiend.",
+    feat4Title:  "Volledige Facturatiegeschiedenis",
+    feat4Desc:   "Alle voltooide projecten opgeslagen met elke taak, bestede tijd, tarief en inkomsten. Hervat elk project met \u00e9\u00e9n tik.",
+    feat5Title:  "Achteraf Aanpassen",
+    feat5Desc:   "Pas bestede tijd en uurtarief aan voor elke taak in Opgeslagen Projecten. Volledige controle over je facturatie.",
+    feat6Title:  "Exporteren naar PDF &amp; CSV",
+    feat6Desc:   "Met \u00e9\u00e9n tik een overzichtelijke, verzendklare samenvatting van al je projecten. PDF of CSV \u2014 jouw keuze.",
+    feat7Title:  "Widget voor Beginscherm",
+    feat7Desc:   "Actief project, taak, tarief en saldo \u2014 in \u00e9\u00e9n oogopslag, zonder de app te openen. Elke 30 seconden vernieuwd.",
+    feat8Title:  "Geen Account Vereist",
+    feat8Desc:   "Alles blijft op je toestel. Geen internet, geen registratie, geen abonnementen. Nooit.",
+    shotsLabel:  "Screenshots",
+    shotsH2:     "Bekijk het in actie",
+    pricingLabel:"\u00a0Prijzen",
+    pricingH2:   "Gratis starten. Eenmalig uitbreiden.",
+    freeTier:    "Gratis",
+    freePrice:   "Gratis",
+    freeNote:    "Volledige tijdregistratie, voor altijd",
+    freeF1:      "Volledige tijds- &amp; inkomstenmeting",
+    freeF2:      "1 project, tot 3 taken",
+    freeF3:      "Alle tarief- &amp; valuta-opties",
+    freeF4:      "Donker / licht / systeemthema",
+    proTier:     "Pro",
+    proPrice:    "\u20ac4,99 / $4.99",
+    proNote:     "Eenmalige aankoop \u00b7 Geen abonnement",
+    proF1:       "Onbeperkte projecten &amp; taken",
+    proF2:       "Widget voor beginscherm",
+    proF3:       "PDF &amp; CSV-export",
+    proF4:       "Volledige facturatiegeschiedenis",
+    proCta:      "E\u00e9n keer betalen, voor altijd gebruiken",
+    audLabel:    "Ideaal voor",
+    audH2:       "Gemaakt voor iedereen die per uur factureert",
+    aud1Title:   "Freelancers",
+    aud1Desc:    "Zelfstandige professionals in elk vakgebied",
+    aud2Title:   "Consultants",
+    aud2Desc:    "Adviseurs en specialisten met meerdere klanten",
+    aud3Title:   "Creatievelingen",
+    aud3Desc:    "Designers, developers en fotografen",
+    aud4Title:   "Professionals",
+    aud4Desc:    "Coaches, therapeuten, advocaten en meer",
+    ftTagline:   "Geen account. Geen internet. Geen onzin.",
+    ftPrivacy:   "Privacybeleid",
+    ftSupport:   "Ondersteuning",
+    ftCr:             "\u00a9 2026 RedLimesDev / Pbliz! \u00b7 TRCKR \u00b7 hourlyratetracker.com"
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll('[data-key]').forEach(function(el) {
+    var key = el.dataset.key;
+    if (COPY[lang] && COPY[lang][key] !== undefined) {
+      el.innerHTML = COPY[lang][key];
+    }
+  });
+  document.querySelectorAll('.lang-sw button').forEach(function(b) {
+    b.classList.toggle('on', b.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
+  localStorage.setItem('hrt-lang', lang);
+}
+
+(function() {
+  var saved = localStorage.getItem('hrt-lang') || 'en';
+  setLang(saved);
+})();
+</script>
+</body>
+</html>

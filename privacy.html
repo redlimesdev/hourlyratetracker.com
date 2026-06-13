@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — TRCKR</title>
+  <meta name="description" content="TRCKR does not collect, store, or share any personal data. All information stays on your device." />
+  <link rel="canonical" href="https://hourlyratetracker.com/privacy" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand:    #4d6070;
+      --brand-dk: #3b4e5d;
+      --brand-lt: #ecf0f3;
+      --ink:      #0d1214;
+      --ink2:     #48565f;
+      --ink3:     #8898a2;
+      --bg:       #ffffff;
+      --bg2:      #f4f7f9;
+      --brd:      #dbe1e6;
+      --r:        14px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg2); color: var(--ink);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      height: 64px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--brd);
+      padding: 0 clamp(1.5rem,5vw,5rem);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+    .nav-brand img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav-brand-name { font-size: 0.95rem; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; white-space: nowrap; }
+    .nav-right { display: flex; align-items: center; gap: 0.875rem; }
+    .lang-sw { display: flex; border: 1.5px solid var(--brd); border-radius: 7px; overflow: hidden; background: var(--bg2); }
+    .lang-sw button {
+      padding: 0.28rem 0.7rem;
+      font: 600 0.73rem/1 'DM Sans', sans-serif;
+      border: none; background: transparent; cursor: pointer;
+      color: var(--ink3); transition: all 0.12s;
+    }
+    .lang-sw button.on { background: var(--brand); color: white; }
+    .nav-home {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--ink2); text-decoration: none;
+      font-size: 0.83rem; font-weight: 500;
+      transition: color 0.12s;
+    }
+    .nav-home:hover { color: var(--ink); }
+    .nav-home svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── PAGE ────────────────────────────── */
+    .page {
+      max-width: 780px; margin: 3rem auto 5rem;
+      padding: 0 clamp(1rem,4vw,2rem);
+    }
+
+    /* ── DOC CARD ────────────────────────── */
+    .doc {
+      background: white; border: 1px solid var(--brd);
+      border-radius: 20px; overflow: hidden;
+    }
+
+    /* ── DOC HEADER ──────────────────────── */
+    .doc-header {
+      padding: 2.75rem 2.75rem 2.25rem;
+      border-bottom: 1px solid var(--brd);
+      display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem;
+    }
+    .doc-icon {
+      width: 68px; height: 68px; border-radius: 16px; overflow: hidden;
+    }
+    .doc-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .doc-header h1 {
+      font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .doc-meta { font-size: 0.8rem; color: var(--ink3); }
+
+    /* Trust badges */
+    .trust-row {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+    .trust-badge {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: var(--brand-lt); color: var(--brand);
+      font-size: 0.75rem; font-weight: 600;
+      padding: 0.3rem 0.8rem; border-radius: 100px;
+    }
+    .trust-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--brand); flex-shrink: 0;
+    }
+
+    /* ── DOC BODY ────────────────────────── */
+    .doc-body { padding: 0 2.75rem 2.75rem; }
+
+    /* Highlight box */
+    .highlight {
+      background: var(--brand-lt);
+      border-left: 3px solid var(--brand);
+      border-radius: 0 10px 10px 0;
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0 0.5rem;
+      font-size: 0.9rem; color: var(--brand-dk); font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .doc-body h2 {
+      font-size: 1rem; font-weight: 700;
+      color: var(--ink); letter-spacing: -0.01em;
+      margin-top: 2rem; margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--brd);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .sec-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--brand-lt); color: var(--brand);
+      font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
+    }
+
+    .doc-body p { font-size: 0.9rem; color: var(--ink2); margin-bottom: 0.75rem; line-height: 1.7; }
+    .doc-body ul { margin: 0.25rem 0 0.875rem 1.25rem; }
+    .doc-body ul li { font-size: 0.9rem; color: var(--ink2); margin-bottom: 0.4rem; line-height: 1.6; }
+
+    /* ── DOC FOOTER ──────────────────────── */
+    .doc-footer {
+      border-top: 1px solid var(--brd);
+      padding: 1.25rem 2.75rem;
+      font-size: 0.77rem; color: var(--ink3);
+      text-align: center;
+    }
+
+    /* ── FOOTER ──────────────────────────── */
+    footer {
+      background: #0d1214;
+      padding: 2.75rem clamp(1.5rem,5vw,5rem);
+      margin-top: 0;
+    }
+    .ft-in {
+      max-width: 780px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .ft-brand { display: flex; align-items: center; gap: 0.6rem; }
+    .ft-brand img { width: 28px; height: 28px; border-radius: 6px; opacity: 0.85; }
+    .ft-bname { font-size: 0.85rem; font-weight: 600; color: white; }
+    .ft-tag { font-size: 0.75rem; color: rgba(255,255,255,0.38); margin-top: 0.15rem; }
+    .ft-links { display: flex; gap: 1.25rem; }
+    .ft-links a { font-size: 0.76rem; color: rgba(255,255,255,0.38); text-decoration: none; transition: color 0.12s; }
+    .ft-links a:hover { color: white; }
+    .ft-cr { font-size: 0.7rem; color: rgba(255,255,255,0.26); }
+
+    @media (max-width: 600px) {
+      .doc-header { padding: 2rem 1.5rem 1.75rem; }
+      .doc-body { padding: 0 1.5rem 2rem; }
+      .doc-footer { padding: 1rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="Landing Page.html">
+    <img src="uploads/trckr_icon_euro_512.png" alt="TRCKR icon" />
+    <span class="nav-brand-name">TRCKR</span>
+  </a>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button class="on" data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="nl" onclick="setLang('nl')">NL</button>
+    </div>
+    <a class="nav-home" href="Landing Page.html">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <span data-key="backHome">Back to home</span>
+    </a>
+  </div>
+</nav>
+
+<!-- PAGE -->
+<main class="page">
+  <div class="doc">
+
+    <!-- Header -->
+    <div class="doc-header">
+      <div class="doc-icon">
+        <img src="uploads/trckr_icon_euro_512.png" alt="TRCKR" />
+      </div>
+      <div>
+        <h1 data-key="pageTitle">Privacy Policy</h1>
+        <p class="doc-meta" data-key="pageMeta">TRCKR &nbsp;·&nbsp; Effective date: May 2026</p>
+      </div>
+      <div class="trust-row">
+        <span class="trust-badge" data-key="badge1">No data collected</span>
+        <span class="trust-badge" data-key="badge2">Works fully offline</span>
+        <span class="trust-badge" data-key="badge3">Nothing shared</span>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="doc-body">
+
+      <div class="highlight" data-key="highlight">
+        TRCKR does not collect, store, or share any personal data. All information you enter stays on your device only.
+      </div>
+
+      <h2><span class="sec-num">1</span><span data-key="h1">Introduction</span></h2>
+      <p data-key="p1">Thank you for using TRCKR. This Privacy Policy explains what information the app collects, how it is used, and your rights as a user. We are committed to protecting your privacy.</p>
+
+      <h2><span class="sec-num">2</span><span data-key="h2">Who We Are</span></h2>
+      <p data-key="p2">TRCKR is an independent Android application developed for freelancers, consultants, and anyone who bills clients by the hour. The app is available on the Google Play Store.</p>
+
+      <h2><span class="sec-num">3</span><span data-key="h3">What Data We Collect</span></h2>
+      <p data-key="p3a">TRCKR collects no personal data whatsoever. Specifically, the app does not collect:</p>
+      <ul>
+        <li data-key="li3a">Your name, email address, or any other identifying information</li>
+        <li data-key="li3b">Location data</li>
+        <li data-key="li3c">Device identifiers</li>
+        <li data-key="li3d">Usage analytics or crash reports</li>
+        <li data-key="li3e">Financial information</li>
+        <li data-key="li3f">Any data transmitted to external servers</li>
+      </ul>
+      <p data-key="p3b">All data you enter in the app — such as project names, session durations, and your hourly rate — is stored exclusively on your device and never leaves it.</p>
+
+      <h2><span class="sec-num">4</span><span data-key="h4">Internet Access</span></h2>
+      <p data-key="p4">TRCKR does not connect to the internet. The app functions entirely offline. No data is sent to or received from any server, cloud service, or third party.</p>
+
+      <h2><span class="sec-num">5</span><span data-key="h5">Data Storage</span></h2>
+      <p data-key="p5a">All app data is stored locally on your Android device using standard Android storage. This data includes:</p>
+      <ul>
+        <li data-key="li5a">Project and session names you have created</li>
+        <li data-key="li5b">Recorded session durations</li>
+        <li data-key="li5c">Your configured hourly rate and currency preference</li>
+      </ul>
+      <p data-key="p5b">This data remains on your device until you delete it within the app or uninstall the application.</p>
+
+      <h2><span class="sec-num">6</span><span data-key="h6">Data Sharing</span></h2>
+      <p data-key="p6">We do not share any data with third parties. There are no advertising networks, analytics providers, or data brokers involved in this application.</p>
+
+      <h2><span class="sec-num">7</span><span data-key="h7">Exported Files</span></h2>
+      <p data-key="p7">TRCKR allows you to export session summaries as PDF or CSV files. These files are saved to your device's storage and are under your full control. We do not have access to any exported files.</p>
+
+      <h2><span class="sec-num">8</span><span data-key="h8">Children's Privacy</span></h2>
+      <p data-key="p8">TRCKR is not directed at children under the age of 13. We do not knowingly collect any data from children. Since the app collects no data at all, it poses no privacy risk to any age group.</p>
+
+      <h2><span class="sec-num">9</span><span data-key="h9">App Permissions</span></h2>
+      <p data-key="p9">TRCKR requests only the minimum permissions necessary to function. Any permission related to storage is used solely to allow you to save exported files to your own device.</p>
+
+      <h2><span class="sec-num">10</span><span data-key="h10">Changes to This Policy</span></h2>
+      <p data-key="p10">If we update this Privacy Policy, the new version will be made available on the Google Play Store listing. We encourage you to review it periodically. Continued use of the app after any changes constitutes acceptance of the updated policy.</p>
+
+      <h2><span class="sec-num">11</span><span data-key="h11">Contact</span></h2>
+      <p data-key="p11">If you have any questions about this Privacy Policy, please contact us via the Google Play Store listing for TRCKR.</p>
+
+    </div>
+
+    <div class="doc-footer" data-key="docFooter">
+      This policy is effective as of May 2026 &nbsp;·&nbsp; TRCKR &nbsp;·&nbsp; hourlyratetracker.com
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-in">
+    <div>
+      <div class="ft-brand">
+        <img src="uploads/trckr_icon_euro_512.png" alt="icon" />
+        <span class="ft-bname">TRCKR</span>
+      </div>
+      <p class="ft-tag" data-key="ftTagline">No account. No internet. No nonsense.</p>
+    </div>
+    <div class="ft-links">
+      <a href="https://hourlyratetracker.com/privacy" data-key="ftPrivacy">Privacy Policy</a>
+      <a href="https://hourlyratetracker.com" data-key="ftHome">Home</a>
+    </div>
+    <p class="ft-cr">&copy; 2026 RedLimesDev &nbsp;&middot;&nbsp; hourlyratetracker.com</p>
+  </div>
+</footer>
+
+<script>
+const COPY = {
+  en: {
+    backHome:   "Back to home",
+    pageTitle:  "Privacy Policy",
+    pageMeta:   "TRCKR \u00b7 Effective date: May 2026",
+    badge1:     "No data collected",
+    badge2:     "Works fully offline",
+    badge3:     "Nothing shared",
+    highlight:  "TRCKR does not collect, store, or share any personal data. All information you enter stays on your device only.",
+    h1: "Introduction",
+    p1: "Thank you for using TRCKR. This Privacy Policy explains what information the app collects, how it is used, and your rights as a user. We are committed to protecting your privacy.",
+    h2: "Who We Are",
+    p2: "TRCKR is an independent Android application developed for freelancers, consultants, and anyone who bills clients by the hour. The app is available on the Google Play Store.",
+    h3: "What Data We Collect",
+    p3a: "TRCKR collects no personal data whatsoever. Specifically, the app does not collect:",
+    li3a: "Your name, email address, or any other identifying information",
+    li3b: "Location data",
+    li3c: "Device identifiers",
+    li3d: "Usage analytics or crash reports",
+    li3e: "Financial information",
+    li3f: "Any data transmitted to external servers",
+    p3b: "All data you enter in the app \u2014 such as project names, session durations, and your hourly rate \u2014 is stored exclusively on your device and never leaves it.",
+    h4: "Internet Access",
+    p4: "TRCKR does not connect to the internet. The app functions entirely offline. No data is sent to or received from any server, cloud service, or third party.",
+    h5: "Data Storage",
+    p5a: "All app data is stored locally on your Android device using standard Android storage. This data includes:",
+    li5a: "Project and session names you have created",
+    li5b: "Recorded session durations",
+    li5c: "Your configured hourly rate and currency preference",
+    p5b: "This data remains on your device until you delete it within the app or uninstall the application.",
+    h6: "Data Sharing",
+    p6: "We do not share any data with third parties. There are no advertising networks, analytics providers, or data brokers involved in this application.",
+    h7: "Exported Files",
+    p7: "TRCKR allows you to export session summaries as PDF or CSV files. These files are saved to your device\u2019s storage and are under your full control. We do not have access to any exported files.",
+    h8: "Children\u2019s Privacy",
+    p8: "TRCKR is not directed at children under the age of 13. We do not knowingly collect any data from children. Since the app collects no data at all, it poses no privacy risk to any age group.",
+    h9: "App Permissions",
+    p9: "TRCKR requests only the minimum permissions necessary to function. Any permission related to storage is used solely to allow you to save exported files to your own device.",
+    h10: "Changes to This Policy",
+    p10: "If we update this Privacy Policy, the new version will be made available on the Google Play Store listing. We encourage you to review it periodically. Continued use of the app after any changes constitutes acceptance of the updated policy.",
+    h11: "Contact",
+    p11: "If you have any questions about this Privacy Policy, please contact us via the Google Play Store listing for TRCKR.",
+    docFooter:  "This policy is effective as of May 2026 \u00b7 TRCKR \u00b7 hourlyratetracker.com",
+    ftTagline:  "No account. No internet. No nonsense.",
+    ftPrivacy:  "Privacy Policy",
+    ftHome:     "Home"
+  },
+  nl: {
+    backHome:   "Terug naar home",
+    pageTitle:  "Privacybeleid",
+    pageMeta:   "TRCKR \u00b7 Ingangsdatum: mei 2026",
+    badge1:     "Geen gegevens verzameld",
+    badge2:     "Volledig offline",
+    badge3:     "Niets gedeeld",
+    highlight:  "TRCKR verzamelt, bewaart of deelt geen persoonlijke gegevens. Alle informatie die je invoert, blijft uitsluitend op je apparaat.",
+    h1: "Inleiding",
+    p1: "Bedankt voor het gebruik van TRCKR. Dit privacybeleid legt uit welke informatie de app verzamelt, hoe deze wordt gebruikt en wat jouw rechten als gebruiker zijn. Wij zetten ons in voor de bescherming van jouw privacy.",
+    h2: "Over Ons",
+    p2: "TRCKR is een onafhankelijke Android-applicatie ontwikkeld voor freelancers, consultants en iedereen die klanten per uur factureert. De app is beschikbaar in de Google Play Store.",
+    h3: "Welke Gegevens We Verzamelen",
+    p3a: "TRCKR verzamelt geen enkele persoonlijke gegevens. Specifiek verzamelt de app het volgende niet:",
+    li3a: "Jouw naam, e-mailadres of andere identificerende informatie",
+    li3b: "Locatiegegevens",
+    li3c: "Apparaat-ID\u2019s",
+    li3d: "Gebruiksanalyses of crashrapporten",
+    li3e: "Financi\u00eble informatie",
+    li3f: "Gegevens die naar externe servers worden verzonden",
+    p3b: "Alle gegevens die je in de app invoert \u2014 zoals projectnamen, sessieduur en jouw uurtarief \u2014 worden uitsluitend op jouw apparaat opgeslagen en verlaten dit nooit.",
+    h4: "Internettoegang",
+    p4: "TRCKR maakt geen verbinding met het internet. De app werkt volledig offline. Er worden geen gegevens verzonden naar of ontvangen van servers, clouddiensten of derden.",
+    h5: "Gegevensopslag",
+    p5a: "Alle appgegevens worden lokaal opgeslagen op jouw Android-apparaat via de standaard Android-opslag. Deze gegevens omvatten:",
+    li5a: "Projecten en sessienamen die je hebt aangemaakt",
+    li5b: "Geregistreerde sessieduur",
+    li5c: "Jouw ingestelde uurtarief en valutavoorkeur",
+    p5b: "Deze gegevens blijven op jouw apparaat totdat je ze verwijdert binnen de app of de applicatie deïnstalleer.",
+    h6: "Gegevens Delen",
+    p6: "We delen geen gegevens met derden. Er zijn geen advertentienetwerken, analysediensten of gegevensmakelaars betrokken bij deze applicatie.",
+    h7: "Ge\u00ebxporteerde Bestanden",
+    p7: "TRCKR stelt je in staat om sessieoverzichten te exporteren als PDF- of CSV-bestanden. Deze bestanden worden opgeslagen op de opslag van jouw apparaat en vallen volledig onder jouw controle. Wij hebben geen toegang tot ge\u00ebxporteerde bestanden.",
+    h8: "Privacy van Kinderen",
+    p8: "TRCKR is niet gericht op kinderen onder de 13 jaar. We verzamelen niet bewust gegevens van kinderen. Omdat de app helemaal geen gegevens verzamelt, vormt deze geen privacyrisico voor welke leeftijdsgroep dan ook.",
+    h9: "App-machtigingen",
+    p9: "TRCKR vraagt alleen de minimaal noodzakelijke machtigingen aan om te functioneren. Machtigingen met betrekking tot opslag worden uitsluitend gebruikt om je in staat te stellen ge\u00ebxporteerde bestanden op te slaan op jouw eigen apparaat.",
+    h10: "Wijzigingen in Dit Beleid",
+    p10: "Als we dit privacybeleid bijwerken, wordt de nieuwe versie beschikbaar gesteld op de Google Play Store-vermelding. We raden je aan dit regelmatig te bekijken. Voortgezet gebruik van de app na eventuele wijzigingen betekent acceptatie van het bijgewerkte beleid.",
+    h11: "Contact",
+    p11: "Als je vragen hebt over dit privacybeleid, neem dan contact met ons op via de Google Play Store-vermelding voor TRCKR.",
+    docFooter:  "Dit beleid is van kracht vanaf mei 2026 \u00b7 TRCKR \u00b7 hourlyratetracker.com",
+    ftTagline:  "Geen account. Geen internet. Geen onzin.",
+    ftPrivacy:  "Privacybeleid",
+    ftHome:     "Home"
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll('[data-key]').forEach(function(el) {
+    var key = el.dataset.key;
+    if (COPY[lang] && COPY[lang][key] !== undefined) {
+      el.innerHTML = COPY[lang][key];
+    }
+  });
+  document.querySelectorAll('.lang-sw button').forEach(function(b) {
+    b.classList.toggle('on', b.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
+  localStorage.setItem('hrt-lang', lang);
+}
+
+(function() {
+  var saved = localStorage.getItem('hrt-lang') || 'en';
+  setLang(saved);
+})();
+</script>
+</body>
+</html>
