@@ -125,6 +125,15 @@
     .store-btn-copy { display: flex; flex-direction: column; }
     .store-btn-sup { font-size: 0.62rem; opacity: 0.68; line-height: 1; letter-spacing: 0.03em; }
     .store-btn-name { font-size: 0.87rem; font-weight: 600; line-height: 1.3; white-space: nowrap; }
+    /* light store pill + theme toggle */
+    html[data-theme="light"] .store-btn { background: #fff; color: var(--ink); border: 1.5px solid var(--brd); }
+    html[data-theme="light"] .store-btn .store-btn-sup { opacity: 0.6; }
+    .theme-sw-wrap { text-align: center; margin-top: 3rem; }
+    .theme-sw-label { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink3); margin-bottom: 0.7rem; }
+    .theme-sw { display: inline-flex; border: 1.5px solid var(--brd); border-radius: 9px; overflow: hidden; background: var(--bg); }
+    .theme-sw button { padding: 0.5rem 1.15rem; font: 600 0.8rem/1 'DM Sans', sans-serif; border: none; cursor: pointer; background: transparent; color: var(--ink3); transition: all 0.12s; }
+    .theme-sw button + button { border-left: 1.5px solid var(--brd); }
+    .theme-sw button.on { background: var(--brand); color: #fff; }
 
 
     .fpill {
@@ -463,6 +472,14 @@
       <img class="lang-shot" data-lightbox data-en="uploads/TRCKR_settings_en_usd.jpg" data-nl="uploads/TRCKR_settings_en_eur.jpg" src="uploads/TRCKR_settings_en_usd.jpg" data-gallery="shots" alt="Settings" />
     </div>
   </div>
+  <div class="theme-sw-wrap">
+    <span class="theme-sw-label" data-key="themeLabel">Appearance</span>
+    <div class="theme-sw" role="group" aria-label="Theme">
+      <button data-theme="system" onclick="setTheme('system')" data-key="themeSystem">System</button>
+      <button data-theme="light" onclick="setTheme('light')" data-key="themeLight">Light</button>
+      <button data-theme="dark" onclick="setTheme('dark')" data-key="themeDark">Dark</button>
+    </div>
+  </div>
 </section>
 
 <!-- FEATURES -->
@@ -663,6 +680,10 @@ const COPY = {
     feat8Desc:   "Everything stays on your device. No internet, no sign-up, no subscriptions. Ever.",
     shotsLabel:  "Screenshots",
     shotsH2:     "See it in action",
+    themeLabel:  "Appearance",
+    themeSystem: "System",
+    themeLight:  "Light",
+    themeDark:   "Dark",
     pricingLabel:"Pricing",
     pricingH2:   "Free to start. One-time to unlock.",
     freeTier:    "Free",
@@ -728,6 +749,10 @@ const COPY = {
     feat8Desc:   "Alles blijft op je toestel. Geen internet, geen registratie, geen abonnementen. Nooit.",
     shotsLabel:  "Screenshots",
     shotsH2:     "Bekijk het in actie",
+    themeLabel:  "Weergave",
+    themeSystem: "Systeem",
+    themeLight:  "Licht",
+    themeDark:   "Donker",
     pricingLabel:"\u00a0Prijzen",
     pricingH2:   "Gratis starten. Eenmalig uitbreiden.",
     freeTier:    "Gratis",
@@ -777,29 +802,57 @@ function setLang(lang) {
   document.querySelectorAll('.lang-sw button').forEach(function(b) {
     b.classList.toggle('on', b.dataset.lang === lang);
   });
-  var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  applyShots(lang);
+  document.documentElement.lang = lang;
+  localStorage.setItem('hrt-lang', lang);
+}
+
+function effectiveTheme() {
+  var pref = localStorage.getItem('hrt-theme') || 'system';
+  if (pref === 'light' || pref === 'dark') return pref;
+  // system → fall back to LIGHT unless the device explicitly asks for dark
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return prefersDark ? 'dark' : 'light';
+}
+
+function applyShots(lang) {
+  lang = lang || localStorage.getItem('hrt-lang') || 'en';
+  var dark = effectiveTheme() === 'dark';
   document.querySelectorAll('.lang-shot').forEach(function(im) {
     var base = lang === 'nl' ? im.dataset.nl : im.dataset.en;
     if (!base) return;
-    if (prefersLight) {
+    if (!dark) {
       var lightSrc = base.replace(/\.(jpe?g|png)$/i, '_light.$1');
-      im.onerror = function() { im.onerror = null; im.src = base; }; // fall back to dark if no light file
+      im.onerror = function() { im.onerror = null; im.src = base; }; // fall back to dark file if no light version
       im.src = lightSrc;
     } else {
       im.onerror = null;
       im.src = base;
     }
   });
-  document.documentElement.lang = lang;
-  localStorage.setItem('hrt-lang', lang);
+}
+
+function applyTheme() {
+  var eff = effectiveTheme();
+  document.documentElement.setAttribute('data-theme', eff);
+  var pref = localStorage.getItem('hrt-theme') || 'system';
+  document.querySelectorAll('.theme-sw button').forEach(function(b) {
+    b.classList.toggle('on', b.dataset.theme === pref);
+  });
+  applyShots();
+}
+
+function setTheme(pref) {
+  localStorage.setItem('hrt-theme', pref);
+  applyTheme();
 }
 
 (function() {
-  var saved = localStorage.getItem('hrt-lang') || 'en';
-  setLang(saved);
+  applyTheme();
+  setLang(localStorage.getItem('hrt-lang') || 'en');
   if (window.matchMedia) {
-    var mq = window.matchMedia('(prefers-color-scheme: light)');
-    var onChange = function() { setLang(localStorage.getItem('hrt-lang') || 'en'); };
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    var onChange = function() { applyTheme(); };
     if (mq.addEventListener) mq.addEventListener('change', onChange);
     else if (mq.addListener) mq.addListener(onChange);
   }
